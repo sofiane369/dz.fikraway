@@ -31,10 +31,16 @@ form.addEventListener('submit', function (e) {
         //document.getElementById('message').style.display = 'block'
         document.getElementById('error').style.display = 'none'
         form.reset()
+        trackPurchase()
+
+        // Redirection après 500ms pour laisser le pixel envoyer l'event
+        setTimeout(() => {
+          window.location.href = 'thankyou.html'
+        }, 500)
       } else {
         //document.getElementById('message').style.display = 'none'
         document.getElementById('error').style.display = 'block'
-        console.log('Erreur serveur :', text)
+        //console.log('Erreur serveur :', text)
       }
     })
     .catch(err => {
