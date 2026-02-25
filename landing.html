@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+            content="width=device-width, initial-scale=1, viewport-fit=cover">
+        <title>MeeZen</title>
+
+        <!-- Google Fonts Tajawal -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap"
+            rel="stylesheet">
+
+        <link rel="stylesheet" href="css/style.css">
+        <script src="js/tracking.js"></script>
+    </head>
+    <body>
+
+        <!-- Screen 1 -->
+        <main class="screen">
+            <img class="screen__img" src="img/pg1.webp" alt="الشاشة 1">
+            <a class="cta-img" href="https://t.me/+Mt-7h1jgDTs5YmY0">
+                <img src="img/btn.webp" alt="زر الدعوة">
+            </a>
+        </main>
+
+        <!-- === Formulaire de commande === -->
+        <section class="order-form-section">
+            <div class="form-container">
+                <h5 class="tajawal-bold form-title">العرض لفترة محدودة – أكمل
+                    طلبك الآن</h2>
+
+                <div dir="ltr" id="countdown"
+                    class="countdown-box tajawal-bold">
+                    <span id="minutes">15</span>
+                    :
+                    <span id="seconds">00</span>
+                </div>
+
+                <form id="orderForm">
+                    <label for="fullName" class="tajawal-medium">الاسم
+                        الكامل</label>
+                    <input type="text" id="fullName" name="fullName"
+                        placeholder="الاسم الكامل" required
+                        oninvalid="this.setCustomValidity('الرجاء إدخال الاسم الكامل')"
+                        oninput="this.setCustomValidity('')">
+
+                    <label for="phone" class="tajawal-medium">رقم الهاتف</label>
+                    <input dir="rtl" type="tel" id="phone" name="phone"
+                        placeholder="رقم الهاتف" required
+                        pattern="^\+?\d{10,15}$"
+                        oninvalid="this.setCustomValidity('الرجاء إدخال رقم هاتف صحيح')"
+                        oninput="this.setCustomValidity('')">
+
+                    <label for="departement"
+                        class="tajawal-medium">الولاية</label>
+                    <input type="text" id="departement" name="departement"
+                        placeholder="الولاية" required
+                        oninvalid="this.setCustomValidity('الرجاء إدخال الولاية')"
+                        oninput="this.setCustomValidity('')">
+                    <input type="hidden" name="content_id"
+                        value="water_flosser">
+                    <input type="hidden" name="content_name"
+                        value="water flosser">
+                    <input type="hidden" name="price" value="5500">
+                    <input type="hidden" name="currency" value="DZD">
+                    <button type="submit" class="btn tajawal-bold">اطلب
+                        الان</button>
+                </form>
+
+                <div id="error" class="error" hidden>حدث خطأ أثناء إرسال طلبك.
+                    يُرجى التحقق من
+                    المعلومات والمحاولة مجددًا.</div>
+            </div>
+        </section>
+
+        <!-- Screen 2 -->
+        <main class="screen">
+            <img class="screen__img" src="img/pg2.webp" alt="الشاشة 2">
+        </main>
+
+        <!-- Screen 3 -->
+        <main class="screen">
+            <img class="screen__img" src="img/pg3.webp" alt="الشاشة 3">
+        </main>
+
+        <!-- Screen 4 -->
+        <main class="screen">
+            <img class="screen__img" src="img/pg4.webp" alt="الشاشة 4">
+            <a class="cta-img" href="https://t.me/+Mt-7h1jgDTs5YmY0">
+                <img src="img/btn.webp" alt="زر الدعوة">
+            </a>
+        </main>
+
+        <script src="js/script.js"></script>
+    </body>
+</html>

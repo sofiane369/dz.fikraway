@@ -1,45 +1,281 @@
+/* === Base Theme Variables === */
+:root {
+  --bg-primary: #0f1115;
+  --bg-secondary: #1b1e24;
+  --text-primary: #ededed;
+  --text-secondary: #999999;
+  --text-inverted: #0f1115;
+  --primary-500: #a78bfa;
+  --primary-700: #876cdb;
+  --accent-500: #00c1a2;
+  --accent-700: #009b82;
+  --surface-hover: #17171d;
+  --surface-press: #14141a;
+  --separator: #2f3138;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --outline: #2a2a33;
+}
+
+/* === Reset / Base === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
 body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  height: 100%;
+  color: var(--text-primary);
+  font-family: "Tajawal", "Noto Naskh Arabic", "Poppins", system-ui, sans-serif;
+  background: var(--bg-primary);
+  direction: rtl;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: radial-gradient(1200px 800px at 20% -10%, rgba(167, 139, 250, 0.08), transparent 60%),
+    radial-gradient(1000px 700px at 120% 10%, rgba(0, 193, 162, 0.06), transparent 60%), var(--bg-primary);
+  overflow-y: auto;
+}
+
+/* === Screens / Images 9x16 === */
+.screen {
+  position: relative;
+  width: min(1080px, 100vw);
+  margin: 0 auto 0px auto;
+}
+
+.screen__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  /*border-radius: 12px;*/
+}
+
+/* === CTA overlay === */
+.cta-img {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(clamp(16px, 3.5%, 60px) + env(safe-area-inset-bottom));
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cta-img img {
+  width: 80%;
+  max-width: 864px;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  user-select: none;
+  -webkit-user-drag: none;
+  transition:
+    filter 0.2s ease,
+    transform 0.1s ease;
+}
+
+.cta-img:hover img {
+  filter: drop-shadow(0 0 20px var(--accent-500));
+}
+
+.cta-img:active img {
+  transform: translateY(1px);
+}
+
+/* === Links styling === */
+a {
+  color: var(--primary-500);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-500);
+}
+
+/* === RTL adjustments === */
+[dir="rtl"] .screen {
+  text-align: right;
+}
+
+/* === Formulaire de commande === */
+.order-form-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--separator);
+  border-radius: 12px 12px 0 0;
+  margin-bottom: 40px;
+}
+
+.form-container {
+  max-width: 500px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-title {
+  font-size: 24px;
+  margin-bottom: 0px;
+  text-align: center;
+  color: var(--text-primary);
+}
+
+form label {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+form input {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--outline);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: "Tajawal", sans-serif;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+form input::placeholder {
+  color: var(--text-secondary);
+}
+
+form input:focus {
+  outline: none;
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.2);
+}
+
+form button.btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  background: var(--accent-500);
+  color: var(--text-inverted);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: "Tajawal", sans-serif;
+  font-weight: 700;
+  transition:
+    background 0.2s ease,
+    transform 0.1s ease;
+}
+
+form button.btn:hover {
+  background: var(--accent-700);
+}
+
+form button.btn:active {
+  transform: translateY(1px);
+}
+
+/* === Tajawal font weights === */
+.tajawal-extralight {
+  font-family: "Tajawal", sans-serif;
+  font-weight: 200;
+}
+.tajawal-light {
+  font-family: "Tajawal", sans-serif;
+  font-weight: 300;
+}
+.tajawal-regular {
+  font-family: "Tajawal", sans-serif;
+  font-weight: 400;
+}
+.tajawal-medium {
+  font-family: "Tajawal", sans-serif;
+  font-weight: 500;
+}
+.tajawal-bold {
+  font-family: "Tajawal", sans-serif;
+  font-weight: 700;
+}
+.tajawal-extrabold {
+  font-family: "Tajawal", sans-serif;
+  font-weight: 800;
+}
+.tajawal-black {
+  font-family: "Tajawal", sans-serif;
+  font-weight: 900;
+}
+
+.error {
+  color: var(--error);
+}
+
+.countdown-box {
+  align-self: center;
+  min-width: 150px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--separator);
+  padding: 10px;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 24px;
+  color: var(--error);
+  margin-bottom: 18px;
+  letter-spacing: 2px;
+}
+
+.countdown-box span {
+  font-weight: 800;
+}
+
+.container-404 {
+  text-align: center;
+  max-width: 500px;
+  padding: 20px;
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  border: 1px solid #2f3138;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.container-404 h1 {
+  font-size: 60px;
+  margin-bottom: 20px;
+  color: var(--accent-500);
+}
+
+.container-404 p {
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.container-404 a {
+  color: var(--primary-500);
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-block;
+  margin-top: 12px;
+}
+
+.container-404 a:hover {
+  color: var(--accent-500);
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .container-404 h1 {
+    font-size: 48px;
   }
-  
-  .container {
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    width: 300px;
-    text-align: center;
+
+  .container-404 p {
+    font-size: 18px;
   }
-  
-  input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  button {
-    width: 100%;
-    padding: 10px;
-    background: #2c7be5;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background: #1a5edb;
-  }
-  
-  #status {
-    margin-top: 15px;
-    font-size: 14px;
-    color: green;
-  }
+}

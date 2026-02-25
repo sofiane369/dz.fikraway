@@ -1,29 +1,84 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>Landing Page</title>
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/tracking.js"></script>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Landing Page</title>
+        <link rel="stylesheet" href="css/style.css">
+        <script src="js/tracking.js"></script>
+    </head>
 
-<div class="container">
-  <h2>Inscris-toi</h2>
+    <body>
+        <div class="form-container">
+            <h2>Contactez-nous</h2>
 
-  <form id="leadForm">
-    <input type="text" name="name" placeholder="Ton nom" required>
-    <input type="email" name="email" placeholder="Ton email" required>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Nom :</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
 
-    <!-- Honeypot anti-spam -->
-    <input type="text" name="website" style="display:none">
+                <div class="form-group">
+                    <label for="email">Email :</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
 
-    <button type="submit">Envoyer</button>
-  </form>
+                <div class="form-group hidden">
+                    <label>Ne pas remplir si vous êtes humain :</label>
+                    <input type="text" name="website">
+                </div>
 
-  <p id="status"></p>
-</div>
+                <button type="submit">Envoyer</button>
+            </form>
 
-<script src="js/script.js"></script>
-</body>
+            <div id="message">Merci ! Vos données ont été envoyées.</div>
+            <div id="error">Oups ! Une erreur est survenue, réessayez.</div>
+        </div>
+
+        <script>
+            const form = document.getElementById('contactForm');
+            const submitButton = form.querySelector('button[type="submit"]');
+            form.addEventListener('submit', function(e){
+                e.preventDefault();
+
+                // Désactiver le bouton pour éviter plusieurs clics
+                submitButton.disabled = true;
+                submitButton.innerText = "Envoi...";
+    
+                const formData = new FormData(form);
+    
+                fetch("https://script.google.com/macros/s/AKfycbyJM4SvvfpaijUdmrM1V8ekj-HS2cfEdiJbQb5jPoO8b2OvsxxkDRTWX2FbkYtyU0Q5YQ/exec" , { // <-- Remplace TON_DEPLOY_ID
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => 
+                response.text()
+                )
+                .then(text => {
+                    // Réactiver le bouton
+                    submitButton.disabled = false;
+                    submitButton.innerText = "Envoyer";
+
+                    if(text.toLowerCase().includes('success')) {
+                        document.getElementById('message').style.display = 'block';
+                        document.getElementById('error').style.display = 'none';
+                        form.reset();
+                    } else {
+                        document.getElementById('message').style.display = 'none';
+                        document.getElementById('error').style.display = 'block';
+                        console.log('Erreur serveur :', text);
+                    }
+                })
+                .catch(err => {
+                    // Réactiver le bouton en cas d'erreur
+                    submitButton.disabled = false;
+                    submitButton.innerText = "Envoyer";
+
+                    document.getElementById('message').style.display = 'none';
+                    document.getElementById('error').style.display = 'block';
+                    console.error(err);
+                });
+            });
+        </script>
+    </body>
+
 </html>
