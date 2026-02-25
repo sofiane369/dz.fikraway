@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Landing Page</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/tracking.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Inscris-toi</h2>
+
+  <form id="leadForm">
+    <input type="text" name="name" placeholder="Ton nom" required>
+    <input type="email" name="email" placeholder="Ton email" required>
+
+    <!-- Honeypot anti-spam -->
+    <input type="text" name="website" style="display:none">
+
+    <button type="submit">Envoyer</button>
+  </form>
+
+  <p id="status"></p>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
