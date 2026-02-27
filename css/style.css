@@ -30,6 +30,38 @@
   --warning: #f4a100;
 }
 
+/* === Health Blue Dark Theme === */
+:root[data-theme="dark"] {
+  /* === Backgrounds === */
+  --bg-primary: #1E1E1E;
+  --bg-secondary: #2C2C2C;
+  --surface: #2C2C2C;
+
+  /* === Text === */
+  --text-primary: #F5F5F5;
+  --text-secondary: #CCCCCC;
+  --text-muted: #AAAAAA;
+  --text-inverted: #1E1E1E;
+
+  /* === Brand Primary (Health Blue) === */
+  --primary-500: #7AC3F5;
+  --primary-700: #5bbceb;
+  --primary-soft: #2A2A2A;
+
+  /* === Accent (Turquoise Action) === */
+  --accent-500: #2ED1E0;
+  --accent-700: #1491a9;
+  --accent-soft: #2A2A2A;
+
+  /* === UI === */
+  --separator: #444444;
+  --outline: #444444;
+
+  /* === States === */
+  --error: #FF6B61;
+  --warning: #F4A100;
+}
+
 /* === Reset / Base === */
 * {
   box-sizing: border-box;
@@ -385,3 +417,6 @@ form button.btn:active {
   text-decoration: line-through; /* barré pour montrer la réduction */
   margin-left: 4px;
 }
+
+
+
