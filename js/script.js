@@ -53,8 +53,8 @@ form.addEventListener('submit', function (e) {
       console.error(err)
     })
 })
-;(function () {
-  const DURATION = 15 * 60 // 15 minutes en secondes
+/* ;(function () {
+  const DURATION = 24 * 60 * 60 // 24 heures en secondes
   const STORAGE_KEY = 'offerCountdownEnd'
 
   let endTime = localStorage.getItem(STORAGE_KEY)
@@ -75,8 +75,14 @@ form.addEventListener('submit', function (e) {
       return
     }
 
-    const minutes = Math.floor(timeLeft / 60)
+    const hours = Math.floor(timeLeft / (60 * 60))
+    const minutes = Math.floor((timeLeft % 3600) / 60)
     const seconds = timeLeft % 60
+
+    document.getElementById('hours').textContent = String(hours).padStart(
+      2,
+      '0'
+    )
 
     document.getElementById('minutes').textContent = String(minutes).padStart(
       2,
@@ -86,6 +92,48 @@ form.addEventListener('submit', function (e) {
       2,
       '0'
     )
+  }
+
+  updateCountdown()
+  setInterval(updateCountdown, 1000)
+})() */
+;(function () {
+  const DURATION = 24 * 60 * 60 // 24 heures en secondes
+  const STORAGE_KEY = 'offerCountdownEnd'
+
+  // Si pas encore stocké → on crée un nouveau countdown
+  let endTime = localStorage.getItem(STORAGE_KEY)
+  if (!endTime) {
+    endTime = Date.now() + DURATION * 1000
+    localStorage.setItem(STORAGE_KEY, endTime)
+  }
+
+  function updateCountdown () {
+    const now = Date.now()
+    const timeLeft = Math.floor((endTime - now) / 1000)
+
+    const countdownBoxes = document.querySelectorAll('.countdown-box')
+    if (timeLeft <= 0) {
+      localStorage.removeItem(STORAGE_KEY)
+      countdownBoxes.forEach(box => {
+        box.innerHTML = 'انتهى العرض'
+      })
+      return
+    }
+
+    const hours = Math.floor(timeLeft / (60 * 60))
+    const minutes = Math.floor((timeLeft % 3600) / 60)
+    const seconds = timeLeft % 60
+
+    countdownBoxes.forEach(box => {
+      const hEl = box.querySelector('.hours')
+      const mEl = box.querySelector('.minutes')
+      const sEl = box.querySelector('.seconds')
+
+      if (hEl) hEl.textContent = String(hours).padStart(2, '0')
+      if (mEl) mEl.textContent = String(minutes).padStart(2, '0')
+      if (sEl) sEl.textContent = String(seconds).padStart(2, '0')
+    })
   }
 
   updateCountdown()
