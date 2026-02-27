@@ -420,3 +420,72 @@ form button.btn:active {
 
 
 
+/* === Final CTA Section === */
+.rappel-cta-section, .final-cta-section {
+  padding: 40px 16px 60px;
+  text-align: center;
+  background: var(--primary-soft);
+  border-top: 1px solid var(--separator);
+}
+
+.rappel-cta-container, .final-cta-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.rappel-cta-title {
+  font-size: 26px;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+.final-cta-title {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+
+.final-cta-subtitle {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+.rappel-cta-title .price-current, .final-cta-subtitle .price-current {
+  color: var(--accent-500);
+  font-weight: 900;
+  margin: 0 6px;
+}
+
+.rappel-cta-title .price-old,  .final-cta-subtitle .price-old{
+  color: var(--text-secondary);
+  text-decoration: line-through;
+  font-size: 20px;
+  margin-right: 6px;
+}
+
+.rappel-cta-btn {
+  margin-top: 12px;
+  width: 100%;
+  max-width: 400px;
+  padding: 14px;
+  font-size: 20px;
+  background: var(--accent-500);
+  color: var(--text-inverted);
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  font-family: "Tajawal", sans-serif;
+  font-weight: 800;
+  transition: all 0.2s ease;
+  box-shadow: 0 10px 25px rgba(27, 175, 203, 0.3);
+}
+
+.rappel-cta-btn:hover {
+  background: var(--accent-700);
+}
+
+.rappel-cta-btn:active {
+  transform: translateY(2px);
+}
