@@ -176,4 +176,28 @@ function trackPurchase () {
     value: price, // number. Value of the order or items sold. Example: 100.
     currency: currency // string. The 4217 currency code. Example: "USD".
   })
+
+  posthog.capture('Purchase', {
+    content_id: contentId,
+    content_name: contentName,
+    value: parseFloat(price),
+    currency: currency
+  });
 }
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const btns = document.querySelectorAll(".scrollToOrder");
+  const orderSection = document.getElementById("order-section");
+
+  if (btns.length && orderSection) {
+    btns.forEach(btn => {
+      btn.addEventListener("click", function () {
+        orderSection.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      });
+    });
+  }
+});
